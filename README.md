@@ -1,8 +1,3 @@
----
-output:
-  pdf_document: default
-  html_document: default
----
 CV with stepwise regression
 ================
 Aaron Peikert
