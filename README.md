@@ -131,3 +131,6 @@ results %>% filter(predictor_dropped != "none") %>%
 ```
 
 ![](README_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+
+In conclusion we can perfectly recover what we have simulated (V1 is
+most important, V2 second most important etc. and V6-10 no importance).

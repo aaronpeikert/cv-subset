@@ -119,3 +119,4 @@ results %>% filter(predictor_dropped != "none") %>%
   NULL
 ```
 
+In conclusion we can perfectly recover what we have simulated (V1 is most important, V2 second most important etc. and V6-10 no importance).
