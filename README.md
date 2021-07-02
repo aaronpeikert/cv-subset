@@ -98,13 +98,14 @@ results <- map_dfr(models, "results", .id = "predictor_dropped") %>%
 This plot shows the raw \(R^2\) for each model.
 
 ``` r
+# reorder for sorting from high to low
 ggplot(results, aes(reorder(predictor_dropped, Rsquared), Rsquared, color = reference)) +
   geom_point() +
   geom_errorbar(aes(ymin = Rsquared_lower, ymax = Rsquared_upper), width = .1) +
   theme_minimal() +
   theme(legend.position = "none") +
   scale_color_manual(values = c("TRUE" = "black", "FALSE" = "grey")) +
-  xlab("predictor_dropped") +
+  xlab("Predictor dropped") +
   NULL
 ```
 
@@ -119,12 +120,13 @@ baseline <- filter(results, predictor_dropped == "none") %>%
   pull(Rsquared)
 results %>% filter(predictor_dropped != "none") %>% 
   mutate(prop = (baseline - Rsquared)/baseline) %>% 
-  ggplot(aes(predictor_dropped, prop)) +
+  ggplot(aes(reorder(predictor_dropped, -prop), prop)) +
   geom_point() +
   theme_minimal() +
   scale_y_continuous(labels = scales::percent) +
   labs(title = paste0("These variables account for the explained varaince of ", round(baseline*100), "%"),
-       caption = "Proportion may not add to 100% because of multicolinarity.") +
+       caption = "Proportion may not add to 100% because of multicolinarity.",
+       x = "Predictor dropped") +
   NULL
 ```
 
